@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Комании группы</title>
+</head>
+<body>
+<h1>Выберите компанию</h1>
+{% for unit in units %}
+    <h3><a href="/{{ unit.unit_id }}/">{{ unit.name }}</a></h3>
+{% end %}
+<h3>Найти по фрагменту Ф.И.О.</h3>
+<form action="" method="POST">
+    <input name="search_string" type="text">
+    <input name="submit" type="submit" value="Искать">
+</form>
+</body>
+</html>

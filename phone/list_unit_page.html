@@ -1,0 +1,37 @@
+<html>
+   <head>
+       <style>
+           td {
+           border: 1px groove black;
+           }
+       </style>
+   </head>
+   <body>
+     <div>
+         {% for unit in units%}
+                <h1>{{ unit.name }}</h1>
+               {% for subunit, lvl in subunits(unit=unit.unit_id) %}
+                    <div style="margin-left: {{ lvl*10 }}px"><H{{ lvl+1 }}>{{ subunit.name }}</h1{{ lvl+1 }}></div>
+                    <TABLE>
+                        {% if staff_exists(subunit_id=subunit.subunit_id) %}
+                        <tr>
+                            <th>Ф.И.О.</th>
+                            <th>Внутренний</th>
+                            <th>Городской</th>
+                            <th>Эл. почта</th>
+                        </tr>
+                        {% end %}
+                        {% for person in persons(subunit=subunit.subunit_id, lvl=lvl) %}
+                            <tr>
+                            <td>{{ person.full_name }}</td>
+                            <td>{{ person.phone1 if person.phone1 else '' }}</td>
+                            <td>{{ person.phone2 if person.phone2 else '' }}</td>
+                            <td>{{ person.email1 if person.email1 else '' }}</td>
+                            </tr>
+                        {% end %}
+                    </TABLE>
+               {% end %}
+         {% end %}
+     </div>
+   </body>
+ </html>
